@@ -1,25 +1,26 @@
 import java.util.Scanner;
+import java.lang.*;
 public class Hangman {
-
-    private static String[] wordBank = {"please", "give", "me", "onehundred", "on", "this", "project"};
-    private static String word = wordBank[(int) (Math.random() * wordBank.length)];
+    private static Scanner scr = new Scanner(System.in);
+    private static String word = scr.nextLine();
     private static String asterisk = new String(new char[word.length()]).replace("\0", "*");
     private static int count = 0;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
+        // sets limit to 7 guesses
         while (count < 7 && asterisk.contains("*")) {
             System.out.println("Guess any letter in the word");
             System.out.println(asterisk);
             String guess = sc.next();
-            hang(guess);
+            System.out.println(hang(guess));
         }
         sc.close();
     }
 
-    public static void hang(String guess) {
+    public static String hang(String guess) {
         String newasterisk = "";
+        //checks whether the guessed letter is in the word
         for (int i = 0; i < word.length(); i++) {
             if (word.charAt(i) == guess.charAt(0)) {
                 newasterisk += guess.charAt(0);
@@ -29,19 +30,21 @@ public class Hangman {
                 newasterisk += "*";
             }
         }
-
+        //returns different results based on whether the guess was correct or not
         if (asterisk.equals(newasterisk)) {
             count++;
-            hangmanImage();
+            hangmanImage(count);
         } else {
             asterisk = newasterisk;
         }
         if (asterisk.equals(word)) {
             System.out.println("Correct! You win! The word was " + word);
         }
+        return newasterisk;
     }
 
-    public static void hangmanImage() {
+    public static String hangmanImage(int input) {
+        //completely uneccessary but gives a fun picture of a hangman
         if (count == 1) {
             System.out.println("Letter not in word: Try again");
             System.out.println();
@@ -123,5 +126,6 @@ public class Hangman {
             System.out.println("___|___    /   \\");
             System.out.println("GAME OVER! The word was " + word);
         }
+        return null;
     }
 }
