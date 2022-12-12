@@ -5,6 +5,7 @@ public class Hangman {
     private static String word = scr.nextLine();
     private static String asterisk = new String(new char[word.length()]).replace("\0", "*");
     private static int count = 0;
+    static hangmanImage newHang = new hangmanImage(count, word);
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -33,7 +34,7 @@ public class Hangman {
         //returns different results based on whether the guess was correct or not
         if (asterisk.equals(newasterisk)) {
             count++;
-            hangmanImage(count);
+            newHang.hangmanActualImage(count);
         } else {
             asterisk = newasterisk;
         }
@@ -43,89 +44,5 @@ public class Hangman {
         return newasterisk;
     }
 
-    public static String hangmanImage(int input) {
-        //completely uneccessary but gives a fun picture of a hangman
-        if (count == 1) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println("___|___");
-            System.out.println();
-        }
-        if (count == 2) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (count == 3) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println("   __________");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   | ");
-            System.out.println("___|___");
-        }
-        if (count == 4) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println("   __________");
-            System.out.println("   |        _|_");
-            System.out.println("   |       /   \\");
-            System.out.println("   |      |     |");
-            System.out.println("   |       \\_ _/");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (count == 5) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println("   __________");
-            System.out.println("   |        _|_");
-            System.out.println("   |       /   \\");
-            System.out.println("   |      |     |");
-            System.out.println("   |       \\_ _/");
-            System.out.println("   |         |");
-            System.out.println("   |         |");
-            System.out.println("   |");
-            System.out.println("___|___");
-        }
-        if (count == 6) {
-            System.out.println("Letter not in word: Try again");
-            System.out.println("   __________");
-            System.out.println("   |        _|_");
-            System.out.println("   |       /   \\");
-            System.out.println("   |      |     |");
-            System.out.println("   |       \\_ _/");
-            System.out.println("   |         |");
-            System.out.println("   |         |");
-            System.out.println("   |        / \\ ");
-            System.out.println("___|___    /   \\");
-        }
-        if (count == 7) {
-            System.out.println("GAME OVER!");
-            System.out.println("   __________");
-            System.out.println("   |        _|_");
-            System.out.println("   |       /   \\");
-            System.out.println("   |      |     |");
-            System.out.println("   |       \\_ _/");
-            System.out.println("   |        _|_");
-            System.out.println("   |       / | \\");
-            System.out.println("   |        / \\ ");
-            System.out.println("___|___    /   \\");
-            System.out.println("GAME OVER! The word was " + word);
-        }
-        return null;
-    }
+
 }
